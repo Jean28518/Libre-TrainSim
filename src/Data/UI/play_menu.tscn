@@ -10,7 +10,7 @@
 [ext_resource path="res://Data/UI/styles/panel_section.tres" type="StyleBox" id=8]
 [ext_resource path="res://Data/UI/play_menu.gd" type="Script" id=10]
 
-[node name="PlayMenu" type="Panel"]
+[node name="PlayMenu" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -20,18 +20,16 @@ __meta__ = {
 }
 
 [node name="V" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 6.0
+margin_top = 10.0
+margin_right = 794.0
+margin_bottom = 596.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Breadcrumb" type="Label" parent="V"]
-margin_right = 760.0
+margin_right = 788.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 2 )
 text = "Hainfurt > Standart - Scenario > S1: Hainfurt - Buchenhain > 12:30:00"
@@ -39,21 +37,21 @@ clip_text = true
 
 [node name="Tracks" type="VBoxContainer" parent="V"]
 margin_top = 34.0
-margin_right = 760.0
-margin_bottom = 560.0
+margin_right = 788.0
+margin_bottom = 586.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="H" type="HBoxContainer" parent="V/Tracks"]
-margin_right = 760.0
-margin_bottom = 473.0
+margin_right = 788.0
+margin_bottom = 499.0
 size_flags_vertical = 3
 
 [node name="ItemList" type="ItemList" parent="V/Tracks/H"]
-margin_right = 760.0
-margin_bottom = 473.0
+margin_right = 788.0
+margin_bottom = 499.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 items = [ "Hainfurt", null, false, "Nuremberg", null, false ]
@@ -94,12 +92,12 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="V/Tracks"]
-margin_top = 477.0
-margin_right = 760.0
-margin_bottom = 526.0
+margin_top = 503.0
+margin_right = 788.0
+margin_bottom = 552.0
 
 [node name="Back" type="Button" parent="V/Tracks/HBoxContainer"]
-margin_right = 378.0
+margin_right = 392.0
 margin_bottom = 49.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 6 )
@@ -110,8 +108,8 @@ custom_styles/normal = ExtResource( 7 )
 text = "BACK"
 
 [node name="Select" type="Button" parent="V/Tracks/HBoxContainer"]
-margin_left = 382.0
-margin_right = 760.0
+margin_left = 396.0
+margin_right = 788.0
 margin_bottom = 49.0
 size_flags_horizontal = 3
 text = "SELECT"

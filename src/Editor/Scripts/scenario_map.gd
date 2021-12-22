@@ -228,10 +228,10 @@ func update_map():
 	# Special Points:
 
 	# Spawn Point:
-	var spawn_point: Dictionary = {}
+	var spawn_point: StationRoutePoint
 	if route_data.size() > 0:
 		spawn_point = route_data[0]
-	if spawn_point != {}:
+	if spawn_point != null:
 		var sprite: Sprite
 		if spawn_point.type == RoutePointType.STATION:
 			var station = world.get_signal(spawn_point.node_name)
@@ -248,12 +248,14 @@ func update_map():
 		var sprite: Sprite
 		if despawn_point.type == RoutePointType.STATION:
 			var station = world.get_signal(despawn_point.node_name)
-			sprite = generate_rail_icon_at(station.attached_rail, station.on_rail_position, station.forward)
+			if station != null:
+				sprite = generate_rail_icon_at(station.attached_rail, station.on_rail_position, station.forward)
 		elif despawn_point.type == RoutePointType.DESPAWN_POINT:
 			sprite = generate_rail_icon_at(despawn_point.rail_name, despawn_point.distance, baked_route.back().forward)
-		sprite.name = "DespawnPoint"
-		sprite.texture = despawn_point_icon
-		$Special.add_child(sprite)
+		if sprite != null:
+			sprite.name = "DespawnPoint"
+			sprite.texture = despawn_point_icon
+			$Special.add_child(sprite)
 
 
 

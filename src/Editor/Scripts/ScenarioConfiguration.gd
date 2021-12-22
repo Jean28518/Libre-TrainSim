@@ -366,7 +366,7 @@ func _on_StationPoint_Select_pressed():
 
 func _station_point_selected(node_name: String):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "node_name", node_name)
+	route_manager.get_point(selected_route_point_index).node_name = node_name
 	update_route_point_list()
 	update_station_point_settings()
 
@@ -426,13 +426,13 @@ func update_station_point_settings():
 
 func _on_StationPoint_StationName_text_changed(new_text):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "station_name", new_text)
+	route_manager.get_point(selected_route_point_index).station_name = new_text
 	update_route_point_list()
 
 
 func _on_StationPoint_StopType_item_selected(index):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "stop_type", index)
+	route_manager.get_point(selected_route_point_index).stop_type = index
 	update_route_point_list()
 	update_station_point_settings()
 	update_scenario_map()
@@ -440,33 +440,33 @@ func _on_StationPoint_StopType_item_selected(index):
 
 func _on_StationPoint_DurationSinceStationBefore_value_changed(value):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "duration_since_station_before", value)
+	route_manager.get_point(selected_route_point_index).duration_since_station_before =  value
 	update_station_point_settings()
 
 
 func _on_StationPoint_PlannedHalttime_value_changed(value):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "planned_halt_time", value)
+	route_manager.get_point(selected_route_point_index).planned_halt_time =  value
 	update_station_point_settings()
 
 func _on_StationPoint_MinimalHalttime_value_changed(value):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "minimal_halt_time", value)
+	route_manager.get_point(selected_route_point_index).minimal_halt_time =  value
 
 
 func _on_StationPoint_signal_time_value_changed(value):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "signal_time", value)
+	route_manager.get_point(selected_route_point_index).signal_time =  value
 
 
 func _on_StationPoint_WaitingPersons_value_changed(value):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "waiting_persons", value)
+	route_manager.get_point(selected_route_point_index).waiting_persons =  value
 
 
 func _on_StationPoint_LeavingPersons_value_changed(value):
 	var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-	route_manager.set_data_of_point(selected_route_point_index, "leaving_persons", value)
+	route_manager.get_point(selected_route_point_index).leaving_persons =  value
 
 
 func _on_SelectArrivalSoundPath_pressed():
@@ -889,19 +889,19 @@ func _on_Content_Selector_resource_selected(complete_path):
 		0:
 			content_selector_index = -1
 			var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-			route_manager.set_data_of_point(selected_route_point_index, "approach_sound_path", complete_path)
+			route_manager.get_point(selected_route_point_index).approach_sound_path = complete_path
 			update_station_point_settings()
 		# Station: Arrival Sound Path
 		1:
 			content_selector_index = -1
 			var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-			route_manager.set_data_of_point(selected_route_point_index, "arrival_sound_path", complete_path)
+			route_manager.get_point(selected_route_point_index).arrival_sound_path = complete_path
 			update_station_point_settings()
 		# Station: Departure Sound Path
 		2:
 			content_selector_index = -1
 			var selected_route_point_index = $TabContainer/Routes/RouteConfiguration/RoutePoints/ItemList.get_selected_items()[0]
-			route_manager.set_data_of_point(selected_route_point_index, "departure_sound_path", complete_path)
+			route_manager.get_point(selected_route_point_index).departure_sound_path = complete_path
 			update_station_point_settings()
 		_:
 			content_selector_index = -1

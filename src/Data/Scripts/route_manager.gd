@@ -53,7 +53,7 @@ func get_route_data():
 
 
 func add_station_point() -> Dictionary:
-	var station_point: Dictionary = station_point_pattern.duplicate(true)
+	var station_point = StationRoutePoint.new()
 	if route_data.empty():
 		station_point.stop_type = StopType.BEGINNING
 	route_data.append(station_point)
@@ -79,7 +79,7 @@ func add_despawn_point() -> Dictionary:
 
 
 func get_description_of_point(index : int) -> String:
-	var point: Dictionary = route_data[index]
+	var point: StationRoutePoint = route_data[index]
 	if point.type == RoutePointType.STATION:
 		match point.stop_type:
 			StopType.BEGINNING:
@@ -99,20 +99,19 @@ func get_description_of_point(index : int) -> String:
 	return "Unknown"
 
 
-# (Read Only)
 func get_point(index : int) -> Dictionary:
 	assert(index <  get_route_size())
-	return route_data[index].duplicate()
+	return route_data[index]
 
 
 func get_route_size() -> int:
 	return route_data.size()
 
 
-func set_data_of_point(index: int, key: String, value) -> void:
-	assert(index <  get_route_size())
-	if route_data[index].keys().has(key):
-		route_data[index][key] = value
+#func set_data_of_point(index: int, key: String, value) -> void:
+#	assert(index <  get_route_size())
+#	if route_data[index].keys().has(key):
+#		route_data[index][key] = value
 
 
 func move_point_up(index: int) -> void:
@@ -146,13 +145,13 @@ func get_calculated_station_points(start_time: int) -> Array:
 	for route_point in route_data:
 		if route_point.type != RoutePointType.STATION:
 			continue
-		var p: Dictionary = route_point.duplicate()
-		if p.stop_type != StopType.BEGINNING:
-			time += p.duration_since_station_before
-		p.arrival_time = time
+		route_point = route_point.duplicate()
+		if route_point.stop_type != StopType.BEGINNING:
+			time += route_point.duration_since_station_before
+		route_point.arrival_time = time
 		time += route_point.planned_halt_time
-		p.departure_time = time
-		station_table.append(p)
+		route_point.departure_time = time
+		station_table.append(route_point)
 
 	return station_table
 
@@ -192,7 +191,7 @@ func get_calculated_rail_route(world: Node) -> Array:
 		var start_direction_set: bool = false
 		var forward: bool = true
 		for j in range(2):
-			var route_point: Dictionary = route_data[i+j]
+			var route_point: StationRoutePoint = route_data[i+j]
 			if route_point.type == RoutePointType.STATION:
 				var station: Node = world.get_signal(route_point.node_name)
 				if station == null:
@@ -252,8 +251,8 @@ func get_spawn_position(train_length, world: Node) -> Dictionary:
 	return return_value
 
 
-func get_despawn_information() -> Dictionary:
-	return route_data.back().duplicate(true)
+func get_despawn_information():
+	return route_data.back().duplicate()
 
 
 func get_minimal_platform_length(world: Node) -> int:
